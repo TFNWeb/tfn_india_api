@@ -130,8 +130,11 @@ dmypy.json
 
 .idea/
 venv_python_3_11/
+venv_python_3_12/
 venv/
 .DS_Store
 venv*
 *.rdb
 _reference
+
+config/env.py
