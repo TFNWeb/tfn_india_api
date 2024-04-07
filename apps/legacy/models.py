@@ -128,3 +128,30 @@ class State(models.Model):
     class Meta:
         managed = False
         db_table = 'states'
+
+
+class PDistrictRanking(models.Model):
+    year = models.IntegerField()
+    state_abbr = models.CharField(max_length=2, blank=True, null=True)
+    district_fips = models.CharField(max_length=22, blank=True, null=True)
+    total_county_votes = models.DecimalField(max_digits=32, decimal_places=5, blank=True,
+                                             null=True)  # max_digits and decimal_places have been guessed, as this database handles decimal fields as float
+    total_state_votes = models.DecimalField(max_digits=54, decimal_places=5, blank=True,
+                                            null=True)  # max_digits and decimal_places have been guessed, as this database handles decimal fields as float
+    percentage = models.DecimalField(max_digits=38, decimal_places=2, blank=True, null=True)
+    ranking = models.PositiveBigIntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'p_district_rankings'
+
+
+class InElectionMetadata(models.Model):
+    year = models.IntegerField()
+    race = models.CharField(max_length=9)
+    election_type = models.CharField(max_length=7)
+    race_abbr = models.CharField(max_length=1)
+
+    class Meta:
+        managed = False
+        db_table = 'in_election_metadata'
